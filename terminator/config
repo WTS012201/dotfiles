@@ -1,0 +1,29 @@
+[global_config]
+  window_state = hidden
+  scroll_tabbar = True
+  sticky = True
+  inactive_color_offset = 0.8090277777777778
+[keybindings]
+  insert_number = <Super>minus
+  insert_padded = <Super>equal
+[profiles]
+  [[default]]
+    background_darkness = 0.65
+    background_type = transparent
+    cursor_color = "#1a5fb4"
+    font = Source Code Pro 14
+    show_titlebar = False
+    scrollbar_position = hidden
+    palette = "#000000:#ff2a2a:#1eb664:#cdcd00:#008eb6:#cd00cd:#00b5e8:#faebd7:#404040:#ff9f95:#00ff00:#ffff00:#3584e4:#ff00ff:#00ffff:#ffffff"
+    use_system_font = False
+    background_image = /home/will/Pictures/gigachadtransparent.png
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = default
+[plugins]
