@@ -243,29 +243,33 @@ set $grey		#b0b5bd
 set $mediumgrey		#8b8b8b
 set $yellowbrown	#e1b700
 
-bar {
-	position top
-	i3bar_command i3bar --transparency
-        status_command i3blocks -c /home/will/.config/i3blocks/i3blocks.conf
-	colors {
-		    separator          $purple
-		    background         #00000080
-		    statusline         $white
-#                          		border 		        bg		txt		indicator
-		focused_workspace	#00000080	   	#00000080		$lightblue	$purple
-		active_workspace	$lightblue      	$mediumgrey	$darkgrey	$purple
-		inactive_workspace	#00000080  		#00000080	$grey		$purple
-		urgent_workspace	#7997bb80	    	#5294e280	$white		$purple 
-	}
+# bar {
+# 	position top
+# 	i3bar_command i3bar --transparency
+#         status_command i3blocks -c /home/will/.config/i3blocks/i3blocks.conf
+# 	colors {
+# 		    separator          $purple
+# 		    background         #00000080
+# 		    statusline         $white
+# #                          		border 		        bg		txt		indicator
+# 		focused_workspace	#00000080	   	#00000080		$lightblue	$purple
+# 		active_workspace	$lightblue      	$mediumgrey	$darkgrey	$purple
+# 		inactive_workspace	#00000080  		#00000080	$grey		$purple
+# 		urgent_workspace	#7997bb80	    	#5294e280	$white		$purple 
+# 	}
 
-}
+# }
 
 #	Display Wallpaper
+
+gaps top 20
+
 #exec_always feh --bg-fill /home/will/Pictures/waifus/waifu03.jpeg
 #exec_always feh --bg-fill /home/will/Pictures/jhin.jpeg
 #exec_always feh --bg-fill /home/will/Pictures/draven.jpg
 #exec_always feh --bg-fill /home/will/Pictures/background/yrdy.jpg
-exec_always feh --bg-fill /home/will/Pictures/background/galaxy.jpg
+#exec_always feh --bg-fill /home/will/Pictures/background/galaxy.jpg
+exec_always feh --bg-fill /home/will/Pictures/background/bg1.jpg
 #	Keybinding for Brave
 bindsym $mod+q exec brave
 
@@ -276,8 +280,9 @@ bindsym $mod+shift+d exec ~/Apps/Discord/Discord
 #	flameshot
 bindsym $mod+shift+s exec flameshot gui
 
-#	Window Compositor
-# exec_always picom -f
-exec_always picom --experimental-backend
 
+#	Window Compositor
+#exec_always picom -f
+exec_always picom --experimental-backend
 exec_always flameshot &
+exec_always ~/.config/polybar/launch.sh
