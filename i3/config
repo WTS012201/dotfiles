@@ -249,13 +249,13 @@ bar {
         status_command i3blocks -c /home/will/.config/i3blocks/i3blocks.conf
 	colors {
 		    separator          $purple
-		    background         #00000040
+		    background         #00000080
 		    statusline         $white
 #                          		border 		        bg		txt		indicator
-		focused_workspace	#00000040	   	#00000040		$lightblue	$purple
+		focused_workspace	#00000080	   	#00000080		$lightblue	$purple
 		active_workspace	$lightblue      	$mediumgrey	$darkgrey	$purple
-		inactive_workspace	#00000040  		#00000040	$grey		$purple
-		urgent_workspace	#7997bb40	    	#5294e240	$white		$purple 
+		inactive_workspace	#00000080  		#00000080	$grey		$purple
+		urgent_workspace	#7997bb80	    	#5294e280	$white		$purple 
 	}
 
 }
