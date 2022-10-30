@@ -265,6 +265,11 @@ set $yellowbrown	#e1b700
 
 gaps top 20
 
+#exec_always feh --bg-fill /home/will/Pictures/waifus/waifu03.jpeg
+#exec_always feh --bg-fill /home/will/Pictures/jhin.jpeg
+#exec_always feh --bg-fill /home/will/Pictures/draven.jpg
+#exec_always feh --bg-fill /home/will/Pictures/background/yrdy.jpg
+#exec_always feh --bg-fill /home/will/Pictures/background/galaxy.jpg
 exec_always feh --bg-fill /home/will/Pictures/background/bg1.jpg
 #	Keybinding for Brave
 bindsym $mod+q exec brave
@@ -272,7 +277,7 @@ bindsym $mod+q exec brave
 #	Discord
 #bindsym $mod+shift+d exec discord
 
-bindsym $mod+shift+d exec /bin/Discord
+bindsym $mod+shift+d exec ~/Apps/Discord/Discord
 #	flameshot
 bindsym $mod+shift+s exec flameshot gui
 
