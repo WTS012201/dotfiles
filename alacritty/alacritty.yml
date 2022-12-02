@@ -1,0 +1,32 @@
+window:
+  opacity: 0.7
+
+font:
+  normal:
+    family: Source Code Pro
+    style:  Medium
+  bold:
+    family: Source Code Pro
+    style:  Bold
+  italic:
+    family: Source Code Pro
+    style:  MediumItalic
+  bold_italic:
+    family: Source Code Pro
+    style: BoldItalic
+  size: 12
+draw_bold_text_with_bright_colors: true
+
+colors:
+  primary:
+    background: "#000000"
+    foreground: "#CBCBCB"
+  normal:
+    black: "#000000"
+    red: "#FF4343"
+    green: "#3DFF98"
+    yellow: "#FFFF1D"
+    blue: "#3030FF"
+    magenta: "#AE30FF"
+    cyan: "#00CDFF"
+    white: "#CBCBCB"
