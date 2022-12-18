@@ -298,7 +298,8 @@ set $yellowbrown	#e1b700
 
 gaps top 20
 
-exec_always feh --bg-fill /home/will/Pictures/background/bg1.jpg
+#exec_always feh --bg-fill /home/will/Pictures/background/bg1.jpg
+#exec_always feh --bg-scale --no-xinerama /home/will/Pictures/background/bg1.jpg
 #	Keybinding for Brave
 bindsym $mod+q exec brave
 
@@ -312,7 +313,7 @@ bindsym $mod+shift+s exec flameshot gui
 
 #	Window Compositor
 #exec_always picom -f
-exec_always picom --experimental-backend
+#exec_always picom --experimental-backend
 exec_always flameshot &
 exec_always ~/.config/polybar/launch.sh
 
@@ -321,3 +322,5 @@ exec_always setxkbmap -option caps:escape
 
 # keyboard
 exec_always ckb-next -b
+
+exec_always --no-startup-id wallpaper-wrap && sleep 1 && picom --experimental-backend

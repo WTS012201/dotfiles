@@ -6,8 +6,11 @@ sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
 # setup dual display
-xrandr --output DP-4 --primary
-xrandr --output DP-4 --right-of HDMI-0 --auto
+xrandr --output DP-4 --primary &
+xrandr --output DP-4 --right-of HDMI-0 --auto &
+
+# dynamic wallpaper
+#wallpaper-wrap &
 
 # merge in defaults and keymaps
 
