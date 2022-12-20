@@ -50,7 +50,6 @@ return require('packer').startup(function(use)
   }
 
   use("folke/zen-mode.nvim")
-  use("github/copilot.vim")
   use {
     'nvim-tree/nvim-tree.lua',
     requires = {
@@ -60,5 +59,5 @@ return require('packer').startup(function(use)
   }
 
   use("norcalli/nvim-colorizer.lua")
-
+  use("terrortylor/nvim-comment")
 end)

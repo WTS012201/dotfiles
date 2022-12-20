@@ -35,8 +35,5 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 -- change all occurences
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
--- start nvim-tree
-vim.keymap.set("n", "<C-t>", ":NvimTreeToggle<cr>")
-
 -- save 
 vim.keymap.set({"n", "i"}, "<C-s>", "<cmd>:w<CR>")
