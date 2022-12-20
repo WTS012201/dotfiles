@@ -27,7 +27,6 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
+vim.opt.cursorline = true
 
---vim.wo.fillchars='eob: '
---vim.cmd([[highlight NvimTreeEndOfBuffer ctermbg=none ctermfg=none]])
 vim.opt.fillchars:append { eob = " " }
