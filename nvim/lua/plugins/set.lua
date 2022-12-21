@@ -29,6 +29,4 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.cursorline = true
 
-vim.opt.fillchars:append { eob = " " }
-
-vim.bo.formatoptions = "jnqlr"
+vim.opt.fillchars:append({ eob = " " })
