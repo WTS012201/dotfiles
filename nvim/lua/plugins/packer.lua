@@ -59,11 +59,19 @@ return require("packer").startup(function(use)
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("MunifTanjim/prettier.nvim")
 	use("p00f/nvim-ts-rainbow")
+	-- use({
+	-- 	"lewis6991/gitsigns.nvim",
+	-- 	config = function()
+	-- 		require("gitsigns").setup()
+	-- 	end,
+	-- })
+	use("feline-nvim/feline.nvim")
+	use("akinsho/toggleterm.nvim")
 	use({
-		"lewis6991/gitsigns.nvim",
+		"windwp/nvim-autopairs",
 		config = function()
-			require("gitsigns").setup()
+			require("nvim-autopairs").setup({})
 		end,
 	})
-	use("feline-nvim/feline.nvim")
+	use("lukas-reineke/indent-blankline.nvim")
 end)

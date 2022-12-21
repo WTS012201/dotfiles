@@ -27,10 +27,10 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 -- no cap q
 vim.keymap.set("n", "Q", "<nop>")
 
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+-- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+-- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+-- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+-- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- change all occurences
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
@@ -39,5 +39,13 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set({ "n", "i" }, "<C-s>", "<CMD>:w<CR>")
 
 -- shift tab
-vim.keymap.set({ "n", "i" }, "<S-Tab>", "<CMD><<<CR>")
-vim.keymap.set("v", "<S-Tab>", "<<<CR>")
+vim.keymap.set({ "n", "i" }, "<s-tab>", "<cmd><<cr>")
+vim.keymap.set("n", "<tab>", "<cmd>><cr>")
+vim.keymap.set("v", "<tab>", ">")
+vim.keymap.set("v", "<S-Tab>", "<")
+
+-- window
+vim.keymap.set("n", "<M-v>", ":vsplit <cr>")
+vim.keymap.set("n", "<M-q>", ":q <cr>")
+vim.keymap.set("n", "<M-l>", ":wincmd l<cr>")
+vim.keymap.set("n", "<M-h>", ":wincmd h<cr>")
