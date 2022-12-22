@@ -42,6 +42,14 @@ function ColorMyPencils(color)
 	vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
 	vim.api.nvim_set_hl(0, "NvimTreeNormalFloat", { bg = "none" })
 	vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { bg = "none" })
+
+	vim.api.nvim_set_hl(0, "BufferLineIndicatorSelected", { bg = "#179FFf" })
+	vim.api.nvim_set_hl(0, "BufferLineCloseButton", { fg = "#AAAAAA", bg = "#161616" })
+	vim.api.nvim_set_hl(0, "BufferLineTabClose", { fg = "#AAAAAA" })
+	vim.api.nvim_set_hl(0, "BufferLineTabClose", { fg = "#AAAAAA", bg = "#FFFFFF" })
+
+	vim.api.nvim_set_hl(0, "BufferLineBackground", { fg = "#AAAAAA", bg = "#161616" })
+	vim.api.nvim_set_hl(0, "BufferLineBufferSelected", { fg = "#FFD700", bg = "#1e1e1e" })
 end
 
 ColorMyPencils()
