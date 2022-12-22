@@ -75,4 +75,10 @@ return require("packer").startup(function(use)
 	-- })
 	use("windwp/nvim-autopairs")
 	use("lukas-reineke/indent-blankline.nvim")
+	use({
+		"kwkarlwang/bufresize.nvim",
+		config = function()
+			require("bufresize").setup()
+		end,
+	})
 end)
