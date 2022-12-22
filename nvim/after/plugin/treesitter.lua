@@ -27,6 +27,10 @@ require("nvim-treesitter.configs").setup({
 		max_file_lines = nil, -- Do not enable for files with more than n lines, int
 		colors = {}, -- table of hex strings
 	},
+
+	autopairs = {
+		enable = true,
+	},
 })
 
 vim.api.nvim_create_augroup("rainbow", {

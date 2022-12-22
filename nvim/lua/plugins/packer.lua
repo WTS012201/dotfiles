@@ -67,11 +67,12 @@ return require("packer").startup(function(use)
 	-- })
 	use("feline-nvim/feline.nvim")
 	use("akinsho/toggleterm.nvim")
-	use({
-		"windwp/nvim-autopairs",
-		config = function()
-			require("nvim-autopairs").setup({})
-		end,
-	})
+	-- use({
+	-- 	"windwp/nvim-autopairs",
+	-- 	config = function()
+	-- 		require("nvim-autopairs").setup({})
+	-- 	end,
+	-- })
+	use("windwp/nvim-autopairs")
 	use("lukas-reineke/indent-blankline.nvim")
 end)

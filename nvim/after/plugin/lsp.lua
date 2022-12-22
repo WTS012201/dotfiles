@@ -51,15 +51,25 @@ lsp.on_attach(function(client, bufnr)
 		vim.cmd.LspStop("eslint")
 		return
 	elseif client.name == "sumneko_lua" then
-		client.server_capabilities.documentFormattingProvider = false -- 0.8 and later		return
+		client.server_capabilities.documentFormattingProvider = false
 	elseif client.name == "clangd" then
-		client.server_capabilities.documentFormattingProvider = false -- 0.8 and later		return
+		client.server_capabilities.documentFormattingProvider = false
 	end
 
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 	vim.keymap.set({ "n", "i" }, "<C-j>", vim.lsp.buf.hover, opts)
 	vim.keymap.set({ "n", "i" }, "<C-h>", vim.lsp.buf.signature_help, opts)
 end)
+
+lsp.configure("pyright", {
+	settings = {
+		python = {
+			analysis = {
+				typeCheckingMode = "off",
+			},
+		},
+	},
+})
 
 lsp.setup()
 
