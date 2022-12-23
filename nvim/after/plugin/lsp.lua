@@ -47,6 +47,11 @@ lsp.set_preferences({
 lsp.on_attach(function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false }
 
+	--- Guard against servers without the signatureHelper capability
+	if client.server_capabilities.signatureHelpProvider then
+		require("lsp-overloads").setup(client, {})
+	end
+
 	if client.name == "eslint" then
 		vim.cmd.LspStop("eslint")
 		return

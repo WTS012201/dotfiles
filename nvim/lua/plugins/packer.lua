@@ -86,4 +86,5 @@ return require("packer").startup(function(use)
 		tag = "v3.*",
 		requires = "nvim-tree/nvim-web-devicons",
 	})
+	use("Issafalcon/lsp-overloads.nvim")
 end)
