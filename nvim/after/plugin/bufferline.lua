@@ -18,3 +18,7 @@ require("bufferline").setup({
 		offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
 	},
 })
+
+vim.keymap.set("n", "<S-l>", ":bnext<cr>")
+vim.keymap.set("n", "<S-h>", ":bprev<cr>")
+vim.keymap.set("n", "<S-q>", ":bdelete<cr>")
