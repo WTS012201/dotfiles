@@ -20,6 +20,7 @@ lsp.configure("sumneko_lua", {
 	},
 })
 
+vim.keymap.set("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<CR>")
 local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -64,6 +65,7 @@ lsp.on_attach(function(client, bufnr)
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 	vim.keymap.set({ "n", "i" }, "<C-j>", vim.lsp.buf.hover, opts)
 	vim.keymap.set({ "n", "i" }, "<C-h>", vim.lsp.buf.signature_help, opts)
+	vim.keymap.set({ "n", "i" }, "<C-l>", vim.lsp.buf.code_action, opts)
 end)
 
 lsp.configure("pyright", {

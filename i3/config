@@ -312,8 +312,8 @@ bindsym $mod+shift+d exec /bin/Discord
 bindsym $mod+shift+s exec flameshot gui
 
 # setup dual display
-exec_always xrandr --output DP-4 --primary &
-exec_always xrandr --output DP-4 --right-of HDMI-0 --auto &
+exec_always xrandr --output DP-4 --primary
+exec_always xrandr --output DP-4 --right-of HDMI-0 --auto
 exec_always xrandr --output DP-4 --mode 1920x1080 --rate 119.98
 
 #	Window Compositor

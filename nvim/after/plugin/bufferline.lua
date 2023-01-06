@@ -21,4 +21,5 @@ require("bufferline").setup({
 
 vim.keymap.set("n", "<S-l>", ":bnext<cr>")
 vim.keymap.set("n", "<S-h>", ":bprev<cr>")
-vim.keymap.set("n", "<S-q>", ":bdelete<cr>")
+-- vim.keymap.set("n", "<S-q>", ":bdelete<cr>")
+vim.keymap.set("n", "<S-q>", ":bp<bar>sp<bar>bn<bar>bd<CR>")
