@@ -106,8 +106,8 @@ bindsym $mod+space focus mode_toggle
 
 
 # displays
-set $pm "DP-4"
-set $sm "HDMI-0"
+set $pm "HDMI-0"
+set $sm "DP-4"
 
 workspace "R1" output $pm
 workspace "R2" output $pm
@@ -312,9 +312,7 @@ bindsym $mod+shift+d exec /bin/Discord
 bindsym $mod+shift+s exec flameshot gui
 
 # setup dual display
-exec_always xrandr --output DP-4 --primary
-exec_always xrandr --output DP-4 --right-of HDMI-0 --auto
-exec_always xrandr --output DP-4 --mode 1920x1080 --rate 119.98
+exec_always xrandr --output HDMI-0 --primary && sleep 1 && xrandr --output HDMI-0 --right-of DP-4 --auto && sleep 1 && xrandr --output DP-4 --mode 1920x1080 --rate 119.98
 
 #	Window Compositor
 #exec_always picom -f
