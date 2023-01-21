@@ -60,6 +60,8 @@ lsp.on_attach(function(client, bufnr)
 		client.server_capabilities.documentFormattingProvider = false
 	elseif client.name == "clangd" then
 		client.server_capabilities.documentFormattingProvider = false
+	elseif client.name == "tsserver" then
+		client.server_capabilities.documentFormattingProvider = false
 	end
 
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
