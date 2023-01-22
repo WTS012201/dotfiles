@@ -231,7 +231,7 @@ end
 
 local theme = {
 	aqua = "#179FFF",
-	bg = "#1C212A",
+	bg = "#1e1e1e",
 	blue = "#5FB0FC",
 	cyan = "#70C0BA",
 	darkred = "#FB7373",

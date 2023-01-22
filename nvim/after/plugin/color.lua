@@ -34,6 +34,8 @@ function ColorMyPencils(color)
 	-- vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "none", fg = "#9CDCFE" })
 	vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "none", fg = "#FFD700" })
 	vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" })
+	vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+	vim.api.nvim_set_hl(0, "StatusLine", { bg = "#1e1e1e" })
 
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
@@ -53,10 +55,10 @@ function ColorMyPencils(color)
 	vim.api.nvim_set_hl(0, "BufferLineBufferSelected", { fg = "#FFD700", bg = "#1e1e1e" })
 
 	-- Diagnostics
-	vim.api.nvim_set_hl(0, "DiagnosticSignError", { fg = "#f44747", bg = "#1e1e1e" })
-	vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { fg = "#dcdcaa", bg = "#1e1e1e" })
-	vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { fg = "#569cd6", bg = "#1e1e1e" })
-	vim.api.nvim_set_hl(0, "DiagnosticSignHint", { fg = "#569cd6", bg = "#1e1e1e" })
+	vim.api.nvim_set_hl(0, "DiagnosticSignError", { fg = "#f44747", bg = "none" })
+	vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { fg = "#dcdcaa", bg = "none" })
+	vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { fg = "#569cd6", bg = "none" })
+	vim.api.nvim_set_hl(0, "DiagnosticSignHint", { fg = "#569cd6", bg = "none" })
 	-- vim.api.nvim_set_hl(0, "@operator", { fg = "#569cd6" })
 end
 
