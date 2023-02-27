@@ -36,7 +36,7 @@
   --dplus-background-color-hue: 0;
   --dplus-background-color-saturation-amount: 0;
   --dplus-background-color-lightness-amount: 0;
-  --dplus-background-color-alpha: 0.8;
+  --dplus-background-color-alpha: 0.75;
 }
 
 /* If you use light theme, you can give it unique settings that are separate from dark theme. */
