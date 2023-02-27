@@ -40,7 +40,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -306,13 +306,13 @@ bindsym $mod+q exec brave
 #	Discord
 #bindsym $mod+shift+d exec discord
 
-bindsym $mod+shift+d exec /bin/Discord
+bindsym $mod+shift+d exec /usr/bin/Discord --use-gl=desktop
 
 #	flameshot
 bindsym $mod+shift+s exec flameshot gui
 
 # setup dual display
-exec_always xrandr --output HDMI-0 --primary && sleep 1 && xrandr --output HDMI-0 --right-of DP-4 --auto && sleep 1 && xrandr --output DP-4 --mode 1920x1080 --rate 119.98
+exec_always xrandr --output HDMI-0 --primary && sleep 1 && xrandr --output DP-4 --left-of HDMI-0 --auto && sleep 1 && xrandr --output DP-4 --mode 1920x1080 --rate 119.98
 
 #	Window Compositor
 #exec_always picom -f

@@ -35,7 +35,7 @@ require("nvim-tree").setup({
 		symlink_destination = false,
 	},
 	filters = {
-		dotfiles = true,
+		dotfiles = false,
 	},
 	actions = {
 		open_file = {

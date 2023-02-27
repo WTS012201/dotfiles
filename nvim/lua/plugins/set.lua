@@ -30,3 +30,5 @@ vim.opt.updatetime = 50
 vim.opt.cursorline = true
 
 vim.opt.fillchars:append({ eob = " " })
+-- vim.opt.shell = "/bin/sh"
+vim.opt.shell = "/usr/bin/fish"

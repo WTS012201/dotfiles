@@ -15,7 +15,7 @@ require("bufferline").setup({
 		show_close_icon = false,
 		show_buffer_close_icons = false,
 		separator_style = "thick",
-		offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
+		-- offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
 	},
 })
 
