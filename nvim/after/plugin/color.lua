@@ -1,22 +1,22 @@
 -- For dark theme (neovim's default)
+
 vim.o.background = "dark"
 
-local c = require("vscode.colors")
+local c = require("vscode.colors").get_colors()
 require("vscode").setup({
+	-- Alternatively set style in setup
+	-- style = 'light'
+
 	-- Enable transparent background
 	transparent = true,
-
 	-- Enable italic comment
 	italic_comments = true,
-
 	-- Disable nvim-tree background color
 	disable_nvimtree_bg = true,
-
 	-- Override colors (see ./lua/vscode/colors.lua)
 	color_overrides = {
 		vscLineNumber = "#FFFFFF",
 	},
-
 	-- Override highlight groups (see ./lua/vscode/theme.lua)
 	group_overrides = {
 		-- this supports the same val table as vim.api.nvim_set_hl
@@ -26,9 +26,7 @@ require("vscode").setup({
 })
 
 function ColorMyPencils(color)
-	color = color or "vscode"
-	vim.cmd.colorscheme(color)
-
+	require("vscode").load()
 	vim.api.nvim_set_hl(0, "LineNr", { bg = "none", fg = "#AAAAAA" })
 	-- vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "none", fg = "#179FFf" })
 	-- vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "none", fg = "#9CDCFE" })
@@ -73,7 +71,10 @@ function ColorMyPencils(color)
 	vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { fg = "#dcdcaa", bg = "none" })
 	vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { fg = "#569cd6", bg = "none" })
 	vim.api.nvim_set_hl(0, "DiagnosticSignHint", { fg = "#569cd6", bg = "none" })
-	-- vim.api.nvim_set_hl(0, "@operator", { fg = "#569cd6" })
+	-- vim.api.nvim_set_hl(0, "@type", { fg = "#FFFFFF", bg = "none" })
 end
+
+local group = vim.api.nvim_create_augroup("Colors", {})
+vim.api.nvim_create_autocmd("ColorScheme", { callback = ColorMyPencils, group = group })
 
 ColorMyPencils()

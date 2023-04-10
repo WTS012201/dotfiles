@@ -5,12 +5,11 @@ lsp.preset("recommended")
 lsp.ensure_installed({
 	"tsserver",
 	"eslint",
-	"sumneko_lua",
+	"lua_ls",
 	"rust_analyzer",
 })
 
--- Fix Undefined global 'vim'
-lsp.configure("sumneko_lua", {
+lsp.configure("lua_ls", {
 	settings = {
 		Lua = {
 			diagnostics = {
@@ -47,6 +46,7 @@ lsp.set_preferences({
 
 lsp.on_attach(function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false }
+	client.server_capabilities.semanticTokensProvider = nil
 
 	--- Guard against servers without the signatureHelper capability
 	if client.server_capabilities.signatureHelpProvider then
@@ -56,7 +56,7 @@ lsp.on_attach(function(client, bufnr)
 	if client.name == "eslint" then
 		vim.cmd.LspStop("eslint")
 		return
-	elseif client.name == "sumneko_lua" then
+	elseif client.name == "lsp-zero" then
 		client.server_capabilities.documentFormattingProvider = false
 	elseif client.name == "clangd" then
 		client.server_capabilities.documentFormattingProvider = false
@@ -94,3 +94,5 @@ vim.notify = function(msg, ...)
 
 	notify(msg, ...)
 end
+
+-- vim.cmd([[ autocmd ColorScheme * :lua require('vim.lsp.diagnostic')._define_default_signs_and_highlights() ]])

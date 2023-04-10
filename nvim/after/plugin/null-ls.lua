@@ -20,10 +20,11 @@ null_ls.setup({
 			vim.api.nvim_create_autocmd("BufWritePre", {
 				group = augroup,
 				buffer = bufnr,
-				callback = function()
+        callback = function()
 					-- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
 					-- vim.lsp.buf.formatting_sync()
-					vim.lsp.buf.formatting()
+            -- vim.lsp.buf.formatting()
+          vim.lsp.buf.format({ bufnr = bufnr })
 				end,
 			})
 		end
