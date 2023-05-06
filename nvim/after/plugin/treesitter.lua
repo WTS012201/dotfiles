@@ -18,7 +18,7 @@ require("nvim-treesitter.configs").setup({
 	rainbow = {
 		enable = true,
 		-- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-		extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+		extended_mode = false, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
 		max_file_lines = nil, -- Do not enable for files with more than n lines, int
 		colors = {}, -- table of hex strings
 	},
@@ -52,9 +52,9 @@ vim.api.nvim_create_autocmd({ "Filetype" }, {
 		vim.api.nvim_set_hl(0, "rainbowcol6", {
 			fg = "#179FFF",
 		})
-		vim.api.nvim_set_hl(0, "rainbowcol7", {
-			fg = "#A3719F",
-		})
+		-- vim.api.nvim_set_hl(0, "rainbowcol7", {
+		-- 	fg = "#A3719F",
+		-- })
 	end,
 	group = "rainbow",
 })
