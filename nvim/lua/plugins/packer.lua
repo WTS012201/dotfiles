@@ -62,6 +62,7 @@ return require("packer").startup(function(use)
 	-- 	},
 	-- })
 
+	use("HiPhish/nvim-ts-rainbow2")
 	use("Mofiqul/vscode.nvim")
 	use("folke/zen-mode.nvim")
 	use({
@@ -77,7 +78,6 @@ return require("packer").startup(function(use)
 
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("MunifTanjim/prettier.nvim")
-	use("p00f/nvim-ts-rainbow")
 	use("lewis6991/gitsigns.nvim")
 	use("feline-nvim/feline.nvim")
 	use("akinsho/toggleterm.nvim")

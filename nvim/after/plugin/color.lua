@@ -60,18 +60,13 @@ function ColorMyPencils(color)
 
 	-- Bufferline
 	vim.api.nvim_set_hl(0, "BufferLineIndicatorSelected", { bg = "#179FFf" })
-	vim.api.nvim_set_hl(0, "BufferLineCloseButton", { fg = "#AAAAAA", bg = "#161616" })
-	vim.api.nvim_set_hl(0, "BufferLineTabClose", { fg = "#AAAAAA" })
-	vim.api.nvim_set_hl(0, "BufferLineTabClose", { fg = "#AAAAAA", bg = "#FFFFFF" })
-	vim.api.nvim_set_hl(0, "BufferLineBackground", { fg = "#AAAAAA", bg = "#161616" })
-	vim.api.nvim_set_hl(0, "BufferLineBufferSelected", { fg = "#FFD700", bg = "#1e1e1e" })
+	vim.api.nvim_set_hl(0, "BufferLineBufferSelected", { fg = "#FFD700" })
 
 	-- Diagnostics
 	vim.api.nvim_set_hl(0, "DiagnosticSignError", { fg = "#f44747", bg = "none" })
 	vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { fg = "#dcdcaa", bg = "none" })
 	vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { fg = "#569cd6", bg = "none" })
 	vim.api.nvim_set_hl(0, "DiagnosticSignHint", { fg = "#569cd6", bg = "none" })
-	-- vim.api.nvim_set_hl(0, "@type", { fg = "#FFFFFF", bg = "none" })
 end
 
 local group = vim.api.nvim_create_augroup("Colors", {})
