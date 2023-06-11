@@ -11,7 +11,16 @@ vim.api.nvim_set_hl(0, "TSRainbow3", {
 })
 
 require("nvim-treesitter.configs").setup({
-	ensure_installed = { "help", "javascript", "typescript", "c", "lua", "rust", "cpp", "python" },
+	ensure_installed = {
+		"help",
+		"javascript",
+		"typescript",
+		"c",
+		"lua",
+		"rust",
+		"cpp",
+		"python",
+	},
 	sync_install = false,
 	auto_install = true,
 	highlight = {
@@ -20,7 +29,11 @@ require("nvim-treesitter.configs").setup({
 	},
 	rainbow = {
 		enable = true,
-		query = "rainbow-parens",
+		query = {
+			"rainbow-parens",
+			tsx = "rainbow-react-custom",
+			typescript = "rainbow-react-custom",
+		},
 		strategy = rainbow.strategy.global,
 		hlgroups = {
 			"TSRainbow1",
@@ -28,7 +41,6 @@ require("nvim-treesitter.configs").setup({
 			"TSRainbow3",
 		},
 	},
-
 	autopairs = {
 		enable = true,
 	},
