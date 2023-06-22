@@ -306,17 +306,22 @@ bindsym $mod+q exec brave
 #	Discord
 #bindsym $mod+shift+d exec discord
 
-bindsym $mod+shift+d exec /usr/bin/Discord --use-gl=desktop
+bindsym $mod+shift+d exec /usr/bin/Discord 
+# --use-gl=desktop
 
 #	flameshot
 bindsym $mod+shift+s exec flameshot gui
+
+bindsym $mod+shift+w exec launch_xwinwrap -d 1920x1080 -r ~/Documents/wallpapers/xwinwrap
+
+exec_always ckb-next -b
 
 # setup dual display
 exec_always xrandr --output HDMI-0 --primary && sleep 1 && xrandr --output DP-4 --left-of HDMI-0 --auto && sleep 1 && xrandr --output DP-4 --mode 1920x1080 --rate 119.98
 
 #	Window Compositor
 #exec_always picom -f
-#exec_always picom --experimental-backend
+exec_always picom --experimental-backend
 
 # flameshot
 exec_always flameshot &
@@ -330,6 +335,5 @@ exec_always setxkbmap -option caps:escape
 # keyboard
 exec_always ckb-next -b
 
-exec_always --no-startup-id wallpaper-wrap && sleep 1 && picom --experimental-backend
-
-
+# exec_always --no-startup-id launch_xwinwrap -d 1920x1080 -r ~/Documents/wallpapers/xwinwrap && sleep 1 && picom --experimental-backend
+exec_always --no-startup-id launch_xwinwrap -d 1920x1080 -r ~/Documents/wallpapers/xwinwrap 

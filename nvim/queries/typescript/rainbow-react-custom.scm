@@ -68,3 +68,7 @@
 (object_type
   "{" @opening
   "}" @closing) @container
+
+(tuple_type
+  "[" @opening
+  "]" @closing) @container
