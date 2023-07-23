@@ -57,6 +57,9 @@ function ColorMyPencils(color)
 	vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { fg = "#dcdcaa", bg = "none" })
 	vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { fg = "#569cd6", bg = "none" })
 	vim.api.nvim_set_hl(0, "DiagnosticSignHint", { fg = "#569cd6", bg = "none" })
+
+	-- Other
+	vim.api.nvim_set_hl(0, "@parameter", { fg = "#d7ba7d", bg = "none" })
 end
 
 local group = vim.api.nvim_create_augroup("Colors", {})

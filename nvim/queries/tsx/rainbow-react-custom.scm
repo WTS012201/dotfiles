@@ -72,3 +72,19 @@
 (tuple_type
   "[" @opening
   "]" @closing) @container
+
+(named_imports
+  "{" @opening
+  "}" @closing) @container
+
+(jsx_expression
+  "{" @opening
+  "}" @closing) @container
+
+(computed_property_name
+  "[" @opening
+  "]" @closing) @container
+
+(parenthesized_type
+  "(" @opening
+  ")" @closing) @container
