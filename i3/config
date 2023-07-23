@@ -93,10 +93,10 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+# bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 #bindsym $mod+a focus parent
@@ -336,4 +336,4 @@ exec_always setxkbmap -option caps:escape
 exec_always ckb-next -b
 
 # exec_always --no-startup-id launch_xwinwrap -d 1920x1080 -r ~/Documents/wallpapers/xwinwrap && sleep 1 && picom --experimental-backend
-exec_always --no-startup-id launch_xwinwrap -d 1920x1080 -r ~/Documents/wallpapers/xwinwrap 
+exec_always sleep 1 && launch_xwinwrap -d 1920x1080 -r ~/Documents/wallpapers/xwinwrap 
