@@ -20,8 +20,19 @@ lsp.configure("lua_ls", {
 	},
 })
 
+lsp.configure("pyright", {
+	settings = {
+		python = {
+			analysis = {
+				typeCheckingMode = "off",
+			},
+		},
+	},
+})
+
 vim.keymap.set("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<CR>")
 local cmp = require("cmp")
+
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
 	["<C-k>"] = cmp.mapping.select_prev_item(cmp_select),
@@ -51,7 +62,12 @@ lsp.on_attach(function(client, bufnr)
 
 	--- Guard against servers without the signatureHelper capability
 	if client.server_capabilities.signatureHelpProvider then
-		require("lsp-overloads").setup(client, {})
+		require("lsp-overloads").setup(client, {
+			keymaps = {
+				next_signature = "<S-j>",
+				previous_signature = "<S-k>",
+			},
+		})
 	end
 
 	if client.name == "eslint" then
@@ -63,6 +79,8 @@ lsp.on_attach(function(client, bufnr)
 		client.server_capabilities.documentFormattingProvider = false
 	elseif client.name == "tsserver" then
 		client.server_capabilities.documentFormattingProvider = false
+	elseif client.name == "rust_analyzer" then
+		client.server_capabilities.documentFormattingProvider = false
 	end
 
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
@@ -71,17 +89,9 @@ lsp.on_attach(function(client, bufnr)
 	vim.keymap.set({ "n", "i" }, "<C-l>", vim.lsp.buf.code_action, opts)
 end)
 
-lsp.configure("pyright", {
-	settings = {
-		python = {
-			analysis = {
-				typeCheckingMode = "off",
-			},
-		},
-	},
-})
-
+-- local rust_lsp = lsp.build_options("rust_analyzer")
 lsp.setup()
+-- require("rust-tools").setup({ server = rust_ls })
 
 vim.diagnostic.config({
 	virtual_text = true,
@@ -96,4 +106,4 @@ vim.notify = function(msg, ...)
 	notify(msg, ...)
 end
 
--- vim.cmd([[ autocmd ColorScheme * :lua require('vim.lsp.diagnostic')._define_default_signs_and_highlights() ]])
+vim.cmd([[ autocmd ColorScheme * :lua require('vim.lsp.diagnostic')._define_default_signs_and_highlights() ]])

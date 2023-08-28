@@ -31,4 +31,6 @@ vim.opt.cursorline = true
 
 vim.opt.fillchars:append({ eob = " " })
 -- vim.opt.shell = "/bin/sh"
+
 vim.opt.shell = "/usr/bin/fish"
+vim.g.rust_recommended_style = 0

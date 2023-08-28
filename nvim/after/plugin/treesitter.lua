@@ -31,8 +31,9 @@ require("nvim-treesitter.configs").setup({
 		enable = true,
 		query = {
 			"rainbow-parens",
-			tsx = "rainbow-react-custom",
-			typescript = "rainbow-react-custom",
+			tsx = "tsx-highlights",
+			typescript = "ts-highlights",
+			rust = "rs-highlights",
 		},
 		strategy = rainbow.strategy.global,
 		hlgroups = {

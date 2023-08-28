@@ -3,11 +3,11 @@ local null_ls = require("null-ls")
 local formatting = null_ls.builtins.formatting
 
 local sources = {
-	-- formatting.eslint,
 	formatting.autopep8,
 	formatting.stylua,
 	formatting.clang_format,
 	formatting.prettier,
+	formatting.rustfmt,
 }
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -23,6 +23,9 @@ null_ls.setup({
 					vim.lsp.buf.format({ bufnr = bufnr })
 				end,
 			})
+		end
+
+		if client.name == "rustfmt" then
 		end
 	end,
 })
