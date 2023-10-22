@@ -4,8 +4,11 @@
   "[" @opening
   "]" @closing) @container
 
-
 (unit_expression
+  "(" @opening
+  ")" @closing) @container
+
+(ERROR
   "(" @opening
   ")" @closing) @container
 

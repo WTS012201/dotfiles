@@ -34,6 +34,8 @@ require("nvim-treesitter.configs").setup({
 			tsx = "tsx-highlights",
 			typescript = "ts-highlights",
 			rust = "rs-highlights",
+			c = "c-highlights",
+			cpp = "cpp-highlights",
 		},
 		strategy = rainbow.strategy.global,
 		hlgroups = {

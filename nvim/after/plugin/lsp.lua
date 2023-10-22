@@ -34,6 +34,9 @@ vim.keymap.set("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float(nil, {focus
 local cmp = require("cmp")
 
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
+local cmp_sources = cmp.config.sources({
+	{ name = "nvim_lsp", keyword_length = 3, group_index = 1 },
+})
 local cmp_mappings = lsp.defaults.cmp_mappings({
 	["<C-k>"] = cmp.mapping.select_prev_item(cmp_select),
 	["<C-j>"] = cmp.mapping.select_next_item(cmp_select),
@@ -44,6 +47,11 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 
 lsp.setup_nvim_cmp({
 	mapping = cmp_mappings,
+	sources = cmp_sources,
+	completion = {
+		autocomplete = false,
+		keyword_length = 0,
+	},
 })
 
 lsp.set_preferences({
