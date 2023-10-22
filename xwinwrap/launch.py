@@ -5,40 +5,32 @@ import os
 from random import random
 import math
 
-MPV ="/home/will/.config/xwinwrap/wallpaper-live"
-FIRST_SUFFIX="first.mp4"
-SECOND_SUFFIX="second.mp4"
+MPV="/home/will/.config/xwinwrap/wallpaper-live"
+MPV_FLIPPED ="/home/will/.config/xwinwrap/wallpaper-live-flipped"
 
 def run_random(res, dir):
-    first, second = [], []
-
     if dir[-1] == "/":
         dir = dir[:-1]
 
-    for file in os.listdir(dir):
-        if file.endswith(FIRST_SUFFIX):
-            first.append(file[:-len(FIRST_SUFFIX)])
-        if file.endswith(SECOND_SUFFIX):
-            second.append(file[:-len(SECOND_SUFFIX)])
-
-    if not len(first): 
+    files = os.listdir(dir)
+    if not len(files): 
         return
 
-    rand = math.floor(random() * len(first))
+    rand = math.floor(random() * len(files))
     [x_res, _] = res.split("x")
-    file = first[rand]
+    file = files[rand]
 
-    first_file = f"{dir}/{file}{FIRST_SUFFIX}"
-    second_file = f"{dir}/{file}{SECOND_SUFFIX}"
+    selected_file = f"{dir}/{file}"
 
-    run_wallpaper(res, first_file)
-    run_wallpaper(res, second_file, x_res)
+    run_wallpaper(res, selected_file)
+    run_wallpaper(res, selected_file, x_res, MPV_FLIPPED)
 
-def run_wallpaper(res, path, offset_x=0):
-    print(f"xwinwrap -g {res}+{offset_x}+0 -un -fdt -ni -b -nf -ov \
-            -- {MPV} WID {path} &")
+def run_seq(res, dir):
+    os.environ["XWINWRAP_INDEX"]
+
+def run_wallpaper(res, path, offset_x=0, mpv=MPV):
     os.system(f"xwinwrap -g {res}+{offset_x}+0 -un -fdt -ni -b -nf -ov \
-            -- {MPV} WID {path} &")
+            -- {mpv} WID {path} &")
 
 
 def main():
@@ -47,8 +39,10 @@ def main():
     parser.add_argument("-d", "--dimension", nargs=1,
                     help="the wallpaper dimension", required=True)
     parser.add_argument("-w", "--wallpaper", nargs="+",
-                    help="the file path(s)", action="append")
+                    help="the file path", action="append")
     parser.add_argument("-r", "--random", nargs=1, type=str,
+                    help="the directory path", required=False)
+    parser.add_argument("-s", "--sequential", nargs=1, type=str,
                     help="the directory path", required=False)
 
     args = parser.parse_args()
@@ -60,8 +54,13 @@ def main():
 
     res = args.dimension[0]
     [x_res, _] = res.split("x")
+
     if args.random:
         run_random(res, args.random[0])
+        return
+
+    if args.sequential:
+        run_seq(res, args.random[0])
         return
 
     for i, path in enumerate(args.wallpaper[0]):
