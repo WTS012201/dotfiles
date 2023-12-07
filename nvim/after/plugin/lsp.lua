@@ -42,16 +42,11 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 	["<C-j>"] = cmp.mapping.select_next_item(cmp_select),
 	["<Tab>"] = cmp.mapping.confirm({ select = true }),
 	["<C-Space>"] = cmp.mapping.complete(),
-	["<Esc>"] = cmp.mapping.close(),
 })
 
 lsp.setup_nvim_cmp({
 	mapping = cmp_mappings,
 	sources = cmp_sources,
-	completion = {
-		autocomplete = false,
-		keyword_length = 0,
-	},
 })
 
 lsp.set_preferences({
@@ -97,9 +92,7 @@ lsp.on_attach(function(client, bufnr)
 	vim.keymap.set({ "n", "i" }, "<C-l>", vim.lsp.buf.code_action, opts)
 end)
 
--- local rust_lsp = lsp.build_options("rust_analyzer")
 lsp.setup()
--- require("rust-tools").setup({ server = rust_ls })
 
 vim.diagnostic.config({
 	virtual_text = true,

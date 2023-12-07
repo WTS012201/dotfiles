@@ -33,7 +33,7 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- save
 vim.keymap.set({ "n", "i" }, "<C-s>", "<CMD>:w<CR><CMD>:e<CR>")
 
--- shift tab
+-- tab & shift tab
 vim.keymap.set({ "n", "i" }, "<s-tab>", "<cmd><<cr>")
 vim.keymap.set("n", "<tab>", "<cmd>><cr>")
 vim.keymap.set("v", "<tab>", ">")
