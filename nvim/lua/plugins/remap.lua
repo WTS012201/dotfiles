@@ -1,4 +1,31 @@
 vim.g.mapleader = " "
+
+function getFileName()
+	local filename = vim.fn.expand("%:t:r")
+	return filename
+end
+
+function insertTsxPattern()
+	local fileName = getFileName()
+	local pattern = {
+		"interface " .. fileName .. "Props{}", -- Line 1
+		"", -- Empty line
+		"export const " .. fileName .. ": React.FC<" .. fileName .. "Props> = ({}) => {", -- Line 3
+		"  return <div></div>", -- Line 4
+		"}", -- Line 5
+	}
+
+	-- Insert the pattern into the current buffer
+	vim.api.nvim_put(pattern, "l", true, true)
+
+	-- Save and format the document by simulating <C-s> keybinding
+	vim.cmd(":w")
+	vim.cmd(":e")
+end
+
+-- Set the keybinding for the new function
+vim.api.nvim_set_keymap("n", "<leader>tsx", ":lua insertTsxPattern()<CR>", { noremap = true, silent = true })
+
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- highlight move and autoindent
