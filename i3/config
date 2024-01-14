@@ -300,6 +300,11 @@ gaps top 20
 
 #exec_always feh --bg-fill /home/will/Pictures/background/bg1.jpg
 #exec_always feh --bg-scale --no-xinerama /home/will/Pictures/background/bg1.jpg
+
+# chinese
+exec --no-startup-id fcitx
+bindsym $mod+c exec "fcitx-remote -t"
+
 #	Keybinding for Brave
 bindsym $mod+q exec brave
 
@@ -312,7 +317,11 @@ bindsym $mod+shift+d exec /usr/bin/Discord
 #	flameshot
 bindsym $mod+shift+s exec flameshot gui
 
-bindsym $mod+shift+w exec launch_xwinwrap -d 1920x1080 -r ~/Documents/wallpapers/xwinwrap
+# wallpapers
+bindsym $mod+Shift+F1 exec launch_xwinwrap -d 1920x1080 -s ~/wallpapers/xwinwrap/scenery
+bindsym $mod+Shift+F2 exec launch_xwinwrap -d 1920x1080 -s ~/wallpapers/xwinwrap/animals
+bindsym $mod+Shift+F3 exec launch_xwinwrap -d 1920x1080 -s ~/wallpapers/xwinwrap/anime
+
 
 exec_always ckb-next -b
 
@@ -335,5 +344,4 @@ exec_always setxkbmap -option caps:escape
 # keyboard
 exec_always ckb-next -b
 
-# exec_always --no-startup-id launch_xwinwrap -d 1920x1080 -r ~/Documents/wallpapers/xwinwrap && sleep 1 && picom --experimental-backend
-exec_always sleep 1 && launch_xwinwrap -d 1920x1080 -r ~/Documents/wallpapers/xwinwrap 
+exec_always sleep 1 && launch_xwinwrap -d 1920x1080 -s ~/wallpapers/xwinwrap/scenery
