@@ -106,7 +106,7 @@ bindsym $mod+e layout toggle split
 
 
 # displays
-set $pm "HDMI-0"
+set $pm "DP-2"
 set $sm "DP-4"
 
 workspace "R1" output $pm
@@ -131,49 +131,49 @@ workspace "L8" output $sm
 workspace "L9" output $sm
 workspace "L10" output $sm
 
-bindsym $mod+1 workspace "R1" 
-bindsym $mod+2 workspace "R2"
-bindsym $mod+3 workspace "R3"
-bindsym $mod+4 workspace "R4"
-bindsym $mod+5 workspace "R5"
-bindsym $mod+6 workspace "R6"
-bindsym $mod+7 workspace "R7"
-bindsym $mod+8 workspace "R8"
-bindsym $mod+9 workspace "R9"
-bindsym $mod+0 workspace "R10"
+bindsym mod1+1 workspace "R1" 
+bindsym mod1+2 workspace "R2"
+bindsym mod1+3 workspace "R3"
+bindsym mod1+4 workspace "R4"
+bindsym mod1+5 workspace "R5"
+bindsym mod1+6 workspace "R6"
+bindsym mod1+7 workspace "R7"
+bindsym mod1+8 workspace "R8"
+bindsym mod1+9 workspace "R9"
+bindsym mod1+0 workspace "R10"
 
-bindsym mod1+1 workspace "L1" 
-bindsym mod1+2 workspace "L2" 
-bindsym mod1+3 workspace "L3" 
-bindsym mod1+4 workspace "L4" 
-bindsym mod1+5 workspace "L5" 
-bindsym mod1+6 workspace "L6" 
-bindsym mod1+7 workspace "L7" 
-bindsym mod1+8 workspace "L8" 
-bindsym mod1+9 workspace "L9" 
-bindsym mod1+0 workspace "L10" 
+bindsym $mod+1 workspace "L1" 
+bindsym $mod+2 workspace "L2" 
+bindsym $mod+3 workspace "L3" 
+bindsym $mod+4 workspace "L4" 
+bindsym $mod+5 workspace "L5" 
+bindsym $mod+6 workspace "L6" 
+bindsym $mod+7 workspace "L7" 
+bindsym $mod+8 workspace "L8" 
+bindsym $mod+9 workspace "L9" 
+bindsym $mod+0 workspace "L10" 
 
-bindsym $mod+Shift+1 move container to workspace "R1" 
-bindsym $mod+Shift+2 move container to workspace "R2"
-bindsym $mod+Shift+3 move container to workspace "R3"
-bindsym $mod+Shift+4 move container to workspace "R4"
-bindsym $mod+Shift+5 move container to workspace "R5"
-bindsym $mod+Shift+6 move container to workspace "R6"
-bindsym $mod+Shift+7 move container to workspace "R7"
-bindsym $mod+Shift+8 move container to workspace "R8"
-bindsym $mod+Shift+9 move container to workspace "R9"
-bindsym $mod+Shift+0 move container to workspace "R10"
+bindsym mod1+Shift+1 move container to workspace "R1" 
+bindsym mod1+Shift+2 move container to workspace "R2"
+bindsym mod1+Shift+3 move container to workspace "R3"
+bindsym mod1+Shift+4 move container to workspace "R4"
+bindsym mod1+Shift+5 move container to workspace "R5"
+bindsym mod1+Shift+6 move container to workspace "R6"
+bindsym mod1+Shift+7 move container to workspace "R7"
+bindsym mod1+Shift+8 move container to workspace "R8"
+bindsym mod1+Shift+9 move container to workspace "R9"
+bindsym mod1+Shift+0 move container to workspace "R10"
 
-bindsym mod1+Shift+1 move container to workspace "L1" 
-bindsym mod1+Shift+2 move container to workspace "L2" 
-bindsym mod1+Shift+3 move container to workspace "L3" 
-bindsym mod1+Shift+4 move container to workspace "L4" 
-bindsym mod1+Shift+5 move container to workspace "L5" 
-bindsym mod1+Shift+6 move container to workspace "L6" 
-bindsym mod1+Shift+7 move container to workspace "L7" 
-bindsym mod1+Shift+8 move container to workspace "L8" 
-bindsym mod1+Shift+9 move container to workspace "L9" 
-bindsym mod1+Shift+0 move container to workspace "L10" 
+bindsym $mod+Shift+1 move container to workspace "L1" 
+bindsym $mod+Shift+2 move container to workspace "L2" 
+bindsym $mod+Shift+3 move container to workspace "L3" 
+bindsym $mod+Shift+4 move container to workspace "L4" 
+bindsym $mod+Shift+5 move container to workspace "L5" 
+bindsym $mod+Shift+6 move container to workspace "L6" 
+bindsym $mod+Shift+7 move container to workspace "L7" 
+bindsym $mod+Shift+8 move container to workspace "L8" 
+bindsym $mod+Shift+9 move container to workspace "L9" 
+bindsym $mod+Shift+0 move container to workspace "L10" 
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -325,12 +325,10 @@ bindsym $mod+Shift+F3 exec launch_xwinwrap -d 1920x1080 -s ~/wallpapers/xwinwrap
 
 exec_always ckb-next -b
 
-# setup dual display
-exec_always xrandr --output HDMI-0 --primary && sleep 1 && xrandr --output DP-4 --left-of HDMI-0 --auto && sleep 1 && xrandr --output DP-4 --mode 1920x1080 --rate 119.98
-
-#	Window Compositor
-#exec_always picom -f
-exec_always picom --experimental-backend
+#	Window 
+exec_always xrandr --output DP-2 --mode 1920x1080 --rate 144.00 && xrandr --output DP-4 --right-of DP-2 --auto && xrandr --output DP-4 --primary --mode 1920x1080 --rate 144.00
+exec_always --no-startup-id sh -c "pkill picom; sleep 1 && picom --experimental-backend"
+exec_always sleep 1 && launch_xwinwrap -d 1920x1080 -s ~/wallpapers/xwinwrap/scenery
 
 # flameshot
 exec_always flameshot &
@@ -343,5 +341,3 @@ exec_always setxkbmap -option caps:escape
 
 # keyboard
 exec_always ckb-next -b
-
-exec_always sleep 1 && launch_xwinwrap -d 1920x1080 -s ~/wallpapers/xwinwrap/scenery
