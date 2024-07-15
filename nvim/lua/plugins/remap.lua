@@ -23,6 +23,29 @@ function insertTsxPattern()
 	vim.cmd(":e")
 end
 
+local function go_to_definition_in_split()
+	local win_count = vim.fn.winnr("$")
+	local win_position = vim.fn.winnr()
+
+	local has_vertical_split = win_count > 1
+	vim.notify("Has vertical split: " .. tostring(has_vertical_split))
+
+	if not has_vertical_split then
+		vim.cmd("vsplit")
+		vim.notify("Created a new vertical split")
+	end
+
+	vim.lsp.buf.definition()
+
+	if win_position == 1 then
+		vim.cmd("wincmd l")
+	else
+		vim.cmd("wincmd h")
+	end
+end
+
+vim.keymap.set("n", "<leader>h", go_to_definition_in_split, { noremap = true, silent = true })
+
 -- Set the keybinding for the new function
 vim.api.nvim_set_keymap("n", "<leader>tsx", ":lua insertTsxPattern()<CR>", { noremap = true, silent = true })
 
