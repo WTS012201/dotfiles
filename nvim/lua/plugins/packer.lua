@@ -1,6 +1,3 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
--- Only required if you have packer configured as `opt`
 vim.cmd([[packadd packer.nvim]])
 
 return require("packer").startup(function(use)
@@ -13,7 +10,10 @@ return require("packer").startup(function(use)
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
 
-	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate",
+	})
 	use("nvim-treesitter/playground")
 	use("mbbill/undotree")
 	use("tpope/vim-fugitive")
@@ -47,7 +47,6 @@ return require("packer").startup(function(use)
 		requires = {
 			"nvim-tree/nvim-web-devicons", -- optional, for file icons
 		},
-		tag = "nightly", -- optional, updated every week. (see issue #1193)
 	})
 
 	use("norcalli/nvim-colorizer.lua")
@@ -68,7 +67,7 @@ return require("packer").startup(function(use)
 	})
 	use({
 		"akinsho/bufferline.nvim",
-		tag = "v3.*",
+		tag = "*",
 		requires = "nvim-tree/nvim-web-devicons",
 	})
 	use("Issafalcon/lsp-overloads.nvim")

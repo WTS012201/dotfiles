@@ -10,9 +10,9 @@ vim.api.nvim_set_hl(0, "TSRainbow3", {
 	fg = "#179FFF",
 })
 
+-- Your existing nvim-treesitter configuration
 require("nvim-treesitter.configs").setup({
 	ensure_installed = {
-		"help",
 		"javascript",
 		"typescript",
 		"c",
@@ -37,14 +37,13 @@ require("nvim-treesitter.configs").setup({
 			c = "c-highlights",
 			cpp = "cpp-highlights",
 		},
-		strategy = rainbow.strategy.global,
+		strategy = require("ts-rainbow").strategy.global,
 		hlgroups = {
 			"TSRainbow1",
 			"TSRainbow2",
 			"TSRainbow3",
 		},
 	},
-	autopairs = {
-		enable = true,
-	},
 })
+
+require("nvim-ts-autotag").setup()

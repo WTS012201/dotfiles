@@ -1,7 +1,9 @@
-local status_ok, bufferline = pcall(require, "bufferline")
-if not status_ok then
-	return
-end
+-- local status_ok, bufferline = pcall(require, "bufferline")
+-- if not status_ok then
+-- 	return
+-- end
+
+-- require("bufferline").setup({})
 
 require("bufferline").setup({
 	options = {
@@ -15,11 +17,11 @@ require("bufferline").setup({
 		show_close_icon = false,
 		show_buffer_close_icons = false,
 		separator_style = "thick",
+		segments = {}, -- Ensure this field is provided as a list
 		-- offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
 	},
 })
 
 vim.keymap.set("n", "<S-l>", ":bnext<cr>")
 vim.keymap.set("n", "<S-h>", ":bprev<cr>")
--- vim.keymap.set("n", "<S-q>", ":bdelete<cr>")
 vim.keymap.set("n", "<S-q>", ":bp<bar>sp<bar>bn<bar>bd<CR>")

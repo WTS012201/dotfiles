@@ -28,11 +28,9 @@ local function go_to_definition_in_split()
 	local win_position = vim.fn.winnr()
 
 	local has_vertical_split = win_count > 1
-	vim.notify("Has vertical split: " .. tostring(has_vertical_split))
 
 	if not has_vertical_split then
 		vim.cmd("vsplit")
-		vim.notify("Created a new vertical split")
 	end
 
 	vim.lsp.buf.definition()

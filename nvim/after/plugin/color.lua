@@ -13,6 +13,7 @@ require("vscode").setup({
 	group_overrides = {
 		Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
 	},
+	terminal_colors = false,
 })
 
 function ColorMyPencils(color)
@@ -59,7 +60,9 @@ function ColorMyPencils(color)
 	vim.api.nvim_set_hl(0, "DiagnosticSignHint", { fg = "#569cd6", bg = "none" })
 
 	-- Other
-	vim.api.nvim_set_hl(0, "@parameter", { fg = "#d7ba7d", bg = "none" })
+	vim.api.nvim_set_hl(0, "@variable.parameter", { fg = "#d7ba7d", bg = "none" })
+	vim.api.nvim_set_hl(0, "@keyword.coroutine", { fg = "#c586c0", bg = "none" })
+	vim.api.nvim_set_hl(0, "@constructor.typescript", { fg = "#4ec9b0", bg = "none" })
 end
 
 local group = vim.api.nvim_create_augroup("Colors", {})

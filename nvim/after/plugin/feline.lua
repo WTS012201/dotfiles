@@ -137,26 +137,11 @@ component.lsp = {
 			return ""
 		end
 
-		local progress = vim.lsp.util.get_progress_messages()[1]
-		if vim.o.columns < 120 then
-			return ""
-		end
-
 		local clients = vim.lsp.get_active_clients({ bufnr = 0 })
 		if #clients ~= 0 then
-			if progress then
-				local spinners = {
-					"◜ ",
-					"◠ ",
-					"◝ ",
-					"◞ ",
-					"◡ ",
-					"◟ ",
-				}
-				local ms = vim.loop.hrtime() / 1000000
-				local frame = math.floor(ms / 120) % #spinners
-				local content = string.format("%%<%s", spinners[frame + 1])
-				return content or ""
+			local status = vim.lsp.status()
+			if status ~= "" then
+				return status
 			else
 				return "לּ LSP"
 			end
@@ -164,9 +149,9 @@ component.lsp = {
 		return ""
 	end,
 	hl = function()
-		local progress = vim.lsp.util.get_progress_messages()[1]
+		local status = vim.lsp.status()
 		return {
-			fg = progress and "yellow" or "green",
+			fg = status ~= "" and "yellow" or "green",
 			bg = "gray",
 			style = "bold",
 		}
