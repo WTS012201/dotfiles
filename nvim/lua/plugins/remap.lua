@@ -42,6 +42,14 @@ local function go_to_definition_in_split()
 	end
 end
 
+vim.api.nvim_create_user_command("FNR", function(opts)
+	local dir = opts.args:match("^(%S+)")
+	local target_word = opts.args:match("%S+ (%S+)")
+	local replacement_word = opts.args:match("%S+ %S+ (%S+)")
+	local cmd = string.format("find %s -type f -exec sed -i 's/%s/%s/g' {} \\;", dir, target_word, replacement_word)
+	vim.cmd("!" .. cmd)
+end, { nargs = "*" })
+
 vim.keymap.set("n", "<leader>h", go_to_definition_in_split, { noremap = true, silent = true })
 
 -- Set the keybinding for the new function
