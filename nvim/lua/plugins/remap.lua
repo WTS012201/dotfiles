@@ -44,9 +44,19 @@ end
 
 vim.api.nvim_create_user_command("FNR", function(opts)
 	local dir = opts.args:match("^(%S+)")
-	local target_word = opts.args:match("%S+ (%S+)")
-	local replacement_word = opts.args:match("%S+ %S+ (%S+)")
+
+	local target_word, replacement_word = opts.args:match('^%S+ "(.-[^\\])" "(.-[^\\])"$')
+
+	if not target_word or not replacement_word then
+		print('Invalid arguments! Usage: FNR <dir> "<target>" "<replacement>"')
+		return
+	end
+
+	target_word = target_word:gsub("/", "\\/")
+	replacement_word = replacement_word:gsub("/", "\\/")
+
 	local cmd = string.format("find %s -type f -exec sed -i 's/%s/%s/g' {} \\;", dir, target_word, replacement_word)
+
 	vim.cmd("!" .. cmd)
 end, { nargs = "*" })
 

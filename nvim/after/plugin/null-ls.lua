@@ -6,7 +6,9 @@ local sources = {
 	formatting.autopep8,
 	formatting.stylua,
 	formatting.clang_format,
-	formatting.prettier,
+	formatting.prettier.with({
+		extra_args = { "--print-width", "100" },
+	}),
 	formatting.rustfmt,
 }
 
@@ -23,9 +25,6 @@ null_ls.setup({
 					vim.lsp.buf.format({ bufnr = bufnr })
 				end,
 			})
-		end
-
-		if client.name == "rustfmt" then
 		end
 	end,
 })
