@@ -1,63 +1,63 @@
 vim.g.mapleader = " "
 
 function getFileName()
-	local filename = vim.fn.expand("%:t:r")
-	return filename
+  local filename = vim.fn.expand("%:t:r")
+  return filename
 end
 
 function insertTsxPattern()
-	local fileName = getFileName()
-	local pattern = {
-		"interface " .. fileName .. "Props{}", -- Line 1
-		"", -- Empty line
-		"export const " .. fileName .. ": React.FC<" .. fileName .. "Props> = ({}) => {", -- Line 3
-		"  return <div></div>", -- Line 4
-		"}", -- Line 5
-	}
+  local fileName = getFileName()
+  local pattern = {
+    "interface " .. fileName .. "Props{}",                                          -- Line 1
+    "",                                                                             -- Empty line
+    "export const " .. fileName .. ": React.FC<" .. fileName .. "Props> = ({}) => {", -- Line 3
+    "  return <div></div>",                                                         -- Line 4
+    "}",                                                                            -- Line 5
+  }
 
-	-- Insert the pattern into the current buffer
-	vim.api.nvim_put(pattern, "l", true, true)
+  -- Insert the pattern into the current buffer
+  vim.api.nvim_put(pattern, "l", true, true)
 
-	-- Save and format the document by simulating <C-s> keybinding
-	vim.cmd(":w")
-	vim.cmd(":e")
+  -- Save and format the document by simulating <C-s> keybinding
+  vim.cmd(":w")
+  vim.cmd(":e")
 end
 
 local function go_to_definition_in_split()
-	local win_count = vim.fn.winnr("$")
-	local win_position = vim.fn.winnr()
+  local win_count = vim.fn.winnr("$")
+  local win_position = vim.fn.winnr()
 
-	local has_vertical_split = win_count > 1
+  local has_vertical_split = win_count > 1
 
-	if not has_vertical_split then
-		vim.cmd("vsplit")
-	end
+  if not has_vertical_split then
+    vim.cmd("vsplit")
+  end
 
-	vim.lsp.buf.definition()
+  vim.lsp.buf.definition()
 
-	if win_position == 1 then
-		vim.cmd("wincmd l")
-	else
-		vim.cmd("wincmd h")
-	end
+  if win_position == 1 then
+    vim.cmd("wincmd l")
+  else
+    vim.cmd("wincmd h")
+  end
 end
 
 vim.api.nvim_create_user_command("FNR", function(opts)
-	local dir = opts.args:match("^(%S+)")
+  local dir = opts.args:match("^(%S+)")
 
-	local target_word, replacement_word = opts.args:match('^%S+ "(.-[^\\])" "(.-[^\\])"$')
+  local target_word, replacement_word = opts.args:match('^%S+ "(.-[^\\])" "(.-[^\\])"$')
 
-	if not target_word or not replacement_word then
-		print('Invalid arguments! Usage: FNR <dir> "<target>" "<replacement>"')
-		return
-	end
+  if not target_word or not replacement_word then
+    print('Invalid arguments! Usage: FNR <dir> "<target>" "<replacement>"')
+    return
+  end
 
-	target_word = target_word:gsub("/", "\\/")
-	replacement_word = replacement_word:gsub("/", "\\/")
+  target_word = target_word:gsub("/", "\\/")
+  replacement_word = replacement_word:gsub("/", "\\/")
 
-	local cmd = string.format("find %s -type f -exec sed -i 's/%s/%s/g' {} \\;", dir, target_word, replacement_word)
+  local cmd = string.format("find %s -type f -exec sed -i 's/%s/%s/g' {} \\;", dir, target_word, replacement_word)
 
-	vim.cmd("!" .. cmd)
+  vim.cmd("!" .. cmd)
 end, { nargs = "*" })
 
 vim.keymap.set("n", "<leader>h", go_to_definition_in_split, { noremap = true, silent = true })
@@ -97,7 +97,10 @@ vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- save
-vim.keymap.set({ "n", "i" }, "<C-s>", "<CMD>:w<CR><CMD>:e<CR>")
+vim.keymap.set({ "n", "i" }, "<C-s>", function()
+  vim.lsp.buf.format()
+  vim.cmd("write")
+end)
 
 -- tab & shift tab
 vim.keymap.set({ "n", "i" }, "<s-tab>", "<cmd><<cr>")
