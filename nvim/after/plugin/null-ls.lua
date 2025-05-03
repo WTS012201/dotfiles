@@ -8,7 +8,16 @@ local sources = {
   formatting.stylua,
   formatting.clang_format,
   formatting.prettier.with({
-    extra_args = { "--print-width", "100" },
+    extra_args = {
+      "--print-width", "100",                 -- Max line width
+      "--prose-wrap", "always",               -- Wrap markdown
+      "--arrow-parens", "always",             -- Consistent parens
+      "--jsx-single-quote", "false",          -- Keep double quotes in JSX
+      "--trailing-comma", "all",              -- Useful for diff
+      "--bracket-same-line", "false",         -- Move `>` to next line
+      "--bracket-spacing", "true",            -- Keep spacing in object literals
+      "--html-whitespace-sensitivity", "css", -- Respect CSS display
+    },
   }),
   formatting.rustfmt,
 }

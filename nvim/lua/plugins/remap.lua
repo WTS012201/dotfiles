@@ -8,11 +8,11 @@ end
 function insertTsxPattern()
   local fileName = getFileName()
   local pattern = {
-    "interface " .. fileName .. "Props{}",                                          -- Line 1
-    "",                                                                             -- Empty line
+    "interface " .. fileName .. "Props{}",                                            -- Line 1
+    "",                                                                               -- Empty line
     "export const " .. fileName .. ": React.FC<" .. fileName .. "Props> = ({}) => {", -- Line 3
-    "  return <div></div>",                                                         -- Line 4
-    "}",                                                                            -- Line 5
+    "  return <div></div>",                                                           -- Line 4
+    "}",                                                                              -- Line 5
   }
 
   -- Insert the pattern into the current buffer
@@ -33,14 +33,26 @@ local function go_to_definition_in_split()
     vim.cmd("vsplit")
   end
 
-  vim.lsp.buf.definition()
+  -- Save current buffer and cursor before moving
+  local current_buf = vim.api.nvim_get_current_buf()
+  local cursor = vim.api.nvim_win_get_cursor(0)
 
+  -- Move to the other split
   if win_position == 1 then
     vim.cmd("wincmd l")
   else
     vim.cmd("wincmd h")
   end
+
+  -- Set the correct buffer and cursor in the target window
+  vim.api.nvim_win_set_buf(0, current_buf)
+  vim.api.nvim_win_set_cursor(0, cursor)
+
+  -- Now call LSP definition (will resolve properly)
+  vim.lsp.buf.definition()
 end
+
+vim.keymap.set("n", "<leader>h", go_to_definition_in_split, { noremap = true, silent = true })
 
 vim.api.nvim_create_user_command("FNR", function(opts)
   local dir = opts.args:match("^(%S+)")
