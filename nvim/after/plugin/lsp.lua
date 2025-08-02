@@ -44,10 +44,22 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
   ["<C-Space>"] = cmp.mapping.complete(),
 })
 
-lsp.setup_nvim_cmp({
+
+cmp.setup({
   mapping = cmp_mappings,
   sources = cmp_sources,
+  window = {
+    documentation = cmp.config.window.bordered({
+      border = "rounded",
+      winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+    }),
+    completion = cmp.config.window.bordered({
+      border = "rounded",
+      winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+    }),
+  },
 })
+
 
 lsp.set_preferences({
   suggest_lsp_servers = false,
@@ -63,15 +75,26 @@ lsp.on_attach(function(client, bufnr)
   local opts = { buffer = bufnr, remap = false }
   client.server_capabilities.semanticTokensProvider = nil
 
-  --- Guard against servers without the signatureHelper capability
   if client.server_capabilities.signatureHelpProvider then
-    require("lsp-overloads").setup(client, {
-      keymaps = {
-        next_signature = "<S-j>",
-        previous_signature = "<S-k>",
+    require("lsp_signature").on_attach({
+      bind = true,
+      handler_opts = {
+        border = "rounded"
       },
-    })
+      floating_window = true,
+      floating_window_above_cur_line = true,
+      hint_enable = true,
+      hint_inline = function() return "eol" end,
+      hint_prefix = " ",
+      select_signature_key = nil,
+      move_cursor_key = nil,
+      toggle_key = "<C-h>",
+      extra_trigger_chars = { "(", "," },
+      hi_parameter = "LspSignatureActiveParameter",
+      scroll_in_floating_window = true,
+    }, bufnr)
   end
+
 
   if client.name == "eslint" then
     vim.cmd.LspStop("eslint")
@@ -107,4 +130,9 @@ vim.notify = function(msg, ...)
   notify(msg, ...)
 end
 
-vim.cmd([[ autocmd ColorScheme * :lua require('vim.lsp.diagnostic')._define_default_signs_and_highlights() ]])
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or "rounded"
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end

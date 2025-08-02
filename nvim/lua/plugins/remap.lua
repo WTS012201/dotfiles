@@ -85,8 +85,6 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- cursor remain in place
 vim.keymap.set("n", "J", "mzJ`z")
--- vim.keymap.set("n", "<C-d>", "<C-d>zz")
--- vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- cursor remain in middle
 vim.keymap.set("n", "n", "nzzzv")

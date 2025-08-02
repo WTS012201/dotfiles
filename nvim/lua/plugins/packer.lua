@@ -72,7 +72,7 @@ return require("packer").startup(function(use)
     tag = "*",
     requires = "nvim-tree/nvim-web-devicons",
   })
-  use("Issafalcon/lsp-overloads.nvim")
   use("windwp/nvim-ts-autotag")
   use("simrat39/rust-tools.nvim")
+  use("ray-x/lsp_signature.nvim")
 end)

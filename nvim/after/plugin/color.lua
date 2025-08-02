@@ -36,13 +36,9 @@ function ColorMyPencils(color)
   vim.api.nvim_set_hl(0, "SignColumn", { ctermbg = "none" })
   vim.api.nvim_set_hl(0, "EndOfBuffer", { ctermbg = "none" })
 
-  -- Transparent
-  -- vim.api.nvim_set_hl(0, "StatusLine", { bg = "none", fg = "#1e1e1e" })
-  -- vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
-
   vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
   vim.api.nvim_set_hl(0, "WinSeparator", { bg = "none" })
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
   -- Nvim
   vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
@@ -71,3 +67,9 @@ local group = vim.api.nvim_create_augroup("Colors", {})
 vim.api.nvim_create_autocmd("ColorScheme", { callback = ColorMyPencils, group = group })
 
 ColorMyPencils()
+
+vim.api.nvim_create_user_command("TestFloat", function()
+  vim.lsp.util.open_floating_preview({ "Test hover popup" }, "plaintext", {
+    border = "rounded",
+  })
+end, {})
