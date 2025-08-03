@@ -6,19 +6,26 @@ function getFileName()
 end
 
 function insertTsxPattern()
-  local fileName = getFileName()
+  local fileName = vim.fn.expand("%:t:r") -- Get filename without extension
+
+  local function toPascalCase(str)
+    return str
+        :gsub("[-%.](%w)", function(c) return c:upper() end)
+        :gsub("^(%w)", function(c) return c:upper() end)
+        :gsub("[-%.]", "") -- Remove any remaining separators
+  end
+
+  local componentName = toPascalCase(fileName)
+
   local pattern = {
-    "interface " .. fileName .. "Props{}",                                            -- Line 1
-    "",                                                                               -- Empty line
-    "export const " .. fileName .. ": React.FC<" .. fileName .. "Props> = ({}) => {", -- Line 3
-    "  return <div></div>",                                                           -- Line 4
-    "}",                                                                              -- Line 5
+    "interface " .. componentName .. "Props {}",
+    "",
+    "export const " .. componentName .. ": React.FC<" .. componentName .. "Props> = ({}) => {",
+    "  return <div></div>",
+    "}",
   }
 
-  -- Insert the pattern into the current buffer
   vim.api.nvim_put(pattern, "l", true, true)
-
-  -- Save and format the document by simulating <C-s> keybinding
   vim.cmd(":w")
   vim.cmd(":e")
 end

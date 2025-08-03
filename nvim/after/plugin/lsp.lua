@@ -136,3 +136,46 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   opts.border = opts.border or "rounded"
   return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
+
+vim.keymap.set("n", "<leader>ca", function()
+  vim.lsp.buf.code_action({
+    context = {
+      only =
+      {
+        "source.addMissingImports.ts",
+        "source.removeUnused.ts",
+        "source.removeUnusedImports.ts",
+        "source.sortImports.ts",
+        "source.organizeImports.ts",
+      },
+      diagnostics = {},
+    },
+    apply = true,
+  })
+end, { desc = "Code actions" })
+
+local function run_code_action(kind)
+  vim.lsp.buf.code_action({
+    context = {
+      only = { kind },
+      diagnostics = {},
+    },
+    apply = true,
+  })
+end
+
+vim.keymap.set("n", "<leader>ai", function()
+  local sequence = {
+    "source.addMissingImports.ts",
+    "source.sortImports.ts",
+    "source.organizeImports.ts",
+  }
+
+  local delay = 200 -- milliseconds between steps
+
+  for i, kind in ipairs(sequence) do
+    vim.defer_fn(function()
+      run_code_action(kind)
+    end, delay * (i - 1))
+  end
+end, { desc = "Add imports → sort → organize" })
