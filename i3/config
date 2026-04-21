@@ -106,8 +106,8 @@ bindsym $mod+e layout toggle split
 
 
 # displays
-set $pm "DP-2"
-set $sm "DP-4"
+set $sm "DP-2"
+set $pm "DP-0"
 
 workspace "R1" output $pm
 workspace "R2" output $pm
@@ -295,22 +295,15 @@ set $yellowbrown	#e1b700
 # }
 
 #	Display Wallpaper
+gaps top 28
 
-gaps top 20
-
-#exec_always feh --bg-fill /home/will/Pictures/background/bg1.jpg
-#exec_always feh --bg-scale --no-xinerama /home/will/Pictures/background/bg1.jpg
-
-# chinese
-exec --no-startup-id fcitx
-bindsym $mod+c exec "fcitx-remote -t"
+# keyboards
+exec --no-startup-id fcitx5 -d
 
 #	Keybinding for Brave
-bindsym $mod+q exec brave
+bindsym $mod+q exec GTK_USE_PORTAL=1 brave --password-store=gnome
 
 #	Discord
-#bindsym $mod+shift+d exec discord
-
 bindsym $mod+shift+d exec /usr/bin/Discord 
 # --use-gl=desktop
 
@@ -318,17 +311,16 @@ bindsym $mod+shift+d exec /usr/bin/Discord
 bindsym $mod+shift+s exec flameshot gui
 
 # wallpapers
-bindsym $mod+Shift+F1 exec launch_xwinwrap -d 1920x1080 -s ~/wallpapers/xwinwrap/scenery
-bindsym $mod+Shift+F2 exec launch_xwinwrap -d 1920x1080 -s ~/wallpapers/xwinwrap/animals
-bindsym $mod+Shift+F3 exec launch_xwinwrap -d 1920x1080 -s ~/wallpapers/xwinwrap/anime
 
+bindsym $mod+Shift+F1 exec launch_xwinwrap -d 2560x1440 -s ~/wallpapers/xwinwrap/scenery
+bindsym $mod+Shift+F2 exec launch_xwinwrap -d 2560x1440 -s ~/wallpapers/xwinwrap/animals
 
 exec_always ckb-next -b
 
 #	Window 
-exec_always xrandr --output DP-2 --mode 1920x1080 --rate 144.00 && xrandr --output DP-4 --right-of DP-2 --auto && xrandr --output DP-4 --primary --mode 1920x1080 --rate 144.00
-exec_always --no-startup-id sh -c "pkill picom; sleep 1 && picom --experimental-backend"
-exec_always sleep 1 && launch_xwinwrap -d 1920x1080 -s ~/wallpapers/xwinwrap/scenery
+exec_always xrandr --output DP-2 --primary --mode 2560x1440 --rate 240.00 && xrandr --output DP-0 --right-of DP-2 --auto && xrandr --output DP-0 --mode 2560x1440 --rate 240.00
+exec --no-startup-id picom -b --config /etc/xdg/picom.conf
+exec_always sleep 1 && launch_xwinwrap -d 2560x1440 -s ~/wallpapers/xwinwrap/scenery
 
 # flameshot
 exec_always flameshot &
@@ -337,7 +329,16 @@ exec_always flameshot &
 exec_always ~/.config/polybar/launch.sh
 
 # bind escape to caps
-exec_always setxkbmap -option caps:escape
+# exec_always setxkbmap -option caps:escape
+
+# compose key
+exec_always --no-startup-id sh -c 'sleep 1; setxkbmap -option "" -option compose:ralt; setxkbmap -option caps:escape'
 
 # keyboard
 exec_always ckb-next -b
+
+# dolphin video
+exec_always XDG_MENU_PREFIX=arch- kbuildsycoca6
+
+exec --no-startup-id xset r rate 300 40
+
